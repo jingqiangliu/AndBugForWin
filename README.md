@@ -8,9 +8,12 @@ Just Make it Easy to debug Android app, the usage is similiar to Linux :
   make (for python 2.7 you need VS2008, and Microsoft Visual Studio 9.0\Common7\Tools in your %PATH% )
   
   modify andbug and add AndBug/lib to python syspath: mine is sys.path.append("/home/Administrator/tmp/AndBug/lib")
-    'this script executes command modules found in andbug.commands'
-    import os, os.path, sys, traceback, atexit
-    sys.path.append("/home/Administrator/tmp/AndBug/lib")
+      'this script executes command modules found in andbug.commands'
+    
+      import os, os.path, sys, traceback, atexit
+    
+      sys.path.append("/home/Administrator/tmp/AndBug/lib")
+    
   
   ./andbug
   
