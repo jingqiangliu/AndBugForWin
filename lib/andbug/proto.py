@@ -55,22 +55,26 @@ def forward(pid, dev=None):
     if dev:
         dev = andbug.util.find_dev(dev)
     pid = andbug.util.find_pid(pid)
-    temp = tempfile.mktemp()
+    #temp = tempfile.mktemp()
+    import random
+    temp = "%d" % random.randint(1000, 32767)
     cmd = ('-s', dev) if dev else ()
-    cmd += ('forward', 'localfilesystem:' + temp,  'jdwp:%s' % pid)
+    #cmd += ('forward', 'localfilesystem:' + temp,  'jdwp:%s' % pid)
+    cmd += ('forward', 'tcp:' + temp,  'jdwp:%s' % pid)
     andbug.util.adb(*cmd)
     return temp
 
 def connect(addr, portno = None, trace=False):
     'connects to an AF_UNIX or AF_INET JDWP transport'
-    if addr and portno:
-        conn = socket.create_connection((addr, portno))
-    elif isinstance(addr, int):
-        conn = socket.create_connection(('127.0.0.1', addr))
-    else:
-        conn = socket.socket(socket.AF_UNIX)
-        conn.connect(addr)
-
+#    if addr and portno:
+#       conn = socket.create_connection((addr, portno))
+#    elif isinstance(addr, int):
+#        conn = socket.create_connection(('127.0.0.1', addr))
+#    else:
+#        conn = socket.socket(socket.AF_UNIX)
+#        conn.connect(addr)
+    conn = socket.create_connection(('127.0.0.1', addr))
+	
     def read(amt):
         'read wrapper internal to andbug.proto.connect'
         req = amt

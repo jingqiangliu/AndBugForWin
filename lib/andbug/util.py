@@ -55,7 +55,7 @@ def sh( command, no_echo=True, no_fail=False, no_wait=False ):
 
     output, _ = process.communicate( )
     status = process.returncode
-
+	
     if status: 
         if not no_echo: printout( '!!! ', output )
         if not no_fail: raise ShellException( command, output, status )
@@ -124,14 +124,19 @@ def find_pid(pid, dev=None):
     ps = ps.splitlines()
     head = ps[0]
     ps = (p.split() for p in ps[1:])
-
+	
+    ps = list(ps)
+    for p in ps:
+        if len(p) == 0:
+            ps.remove(p)
+			
     if head.startswith('PID'):
         ps = ((int(p[0]), p[-1]) for p in ps)
     elif head.startswith('USER'):
         ps = ((int(p[1]), p[-1]) for p in ps)
     else:
         raise ConfigError('could not parse "adb shell ps" output')
-    
+
     if RE_INT.match(str(pid)):
         pid = int(pid)
         ps = list(p for p in ps if p[0] == pid)
