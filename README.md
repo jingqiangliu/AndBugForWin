@@ -1,13 +1,17 @@
 # AndBugForWin
 
-As Is known to all, AndBug is a tool for debugging java/android application on Linux, while i modified Andbug for debugging on  Windows-Cygwin
+#As Is known to all, AndBug is a tool for debugging java/android application on Linux, while i modified Andbug for debugging on  Windows-Cygwin
 Just Make it Easy to debug Android app, the usage is similiar to Linux :
+
   git clone
+  
   make (for python 2.7 you need VS2008, and Microsoft Visual Studio 9.0\Common7\Tools in your %PATH% )
+  
   ./andbug
   
   
-Administrator@WINWORK-UC7OSF4 ~/tmp/AndBug
+  
+#Administrator@WINWORK-UC7OSF4 ~/tmp/AndBug
 $ make
 python setup.py build_ext -i
 running build_ext
@@ -63,7 +67,7 @@ Ran 6 tests in 0.014s
 
 OK
 
-Administrator@WINWORK-UC7OSF4 ~/tmp/AndBug
+#Administrator@WINWORK-UC7OSF4 ~/tmp/AndBug
 $ ./andbug
 
 ## AndBug (C) 2011 Scott W. Dunlop <swdunlop@gmail.com>
